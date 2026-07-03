@@ -1,0 +1,1 @@
+making architecture of lovable type website using Gemini 

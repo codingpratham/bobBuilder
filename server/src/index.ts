@@ -29,6 +29,16 @@ app.get('/',(req:any,res:any)=>{
 
 setupWebSocket(server)
 
+server.on("error", (error: NodeJS.ErrnoException) => {
+    if (error.code === "EADDRINUSE") {
+        console.error(`Port ${port} is already in use. Stop the existing server or set a different PORT.`);
+        process.exit(1);
+    }
+
+    console.error("Server error:", error);
+    process.exit(1);
+});
+
 server.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
     console.log(`WebSocket ready on ws://localhost:${port}`);

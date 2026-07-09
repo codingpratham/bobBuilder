@@ -5,7 +5,7 @@ export function setupWebSocket(server: any) {
     const wss = new WebSocketServer({ server });
 
     wss.on("connection", (ws: AuthenticatedWS) => {
-        console.log("🔌 New WebSocket connection established");
+        console.log("New WebSocket connection established");
 
         // Send connection acknowledgement - client knows they're connected
         ws.send(JSON.stringify({
@@ -21,7 +21,7 @@ export function setupWebSocket(server: any) {
         // When client disconnects (tab close, network drop, etc.)
         ws.on("close", () => {
             leaveRoom(ws); // Remove from room, notify others
-            console.log(`❌ ${ws.username ?? "Unauthenticated user"} disconnected`);
+            console.log(`${ws.username ?? "Unauthenticated user"} disconnected`);
         });
 
         // Handle network errors gracefully - don't crash the server
@@ -31,5 +31,5 @@ export function setupWebSocket(server: any) {
         });
     });
 
-    console.log("🚀 WebSocket server is ready");
-}
+    console.log(" WebSocket server is ready");
+}
